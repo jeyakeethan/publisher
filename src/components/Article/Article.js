@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Article.css';
 import { FiEdit, FiSave } from 'react-icons/fi';
+import Service, {saveArticle} from '../Service/Service';
 
 class Article extends Component {
 
@@ -38,10 +39,17 @@ class Article extends Component {
   changeContent(event) {
     event.preventDefault();
     if (this.state.allowChangeContent) {
-      this.setState({ article: { content: event.target.value } });
+      const article = this.state.article;
+      article.content = event.target.value;
+      this.setState({article});
     }
   }
   saveContent(event) {
+    const id = this.state.article?.id;
+    const content = this.state.article?.content;
+    const article = {id, content};
+    console.log(article);
+    saveArticle(article);
     this.setState({ allowChangeContent: false });
   }
 

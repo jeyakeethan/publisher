@@ -10,6 +10,7 @@
     padding-right: 30px;
     margin-bottom: 7px;
     border-bottom: 1px solid darkslategray;
+    display: inline-table;
 }
 
 .content-title {
@@ -29,7 +30,7 @@
 
 .title-edit-button {
     margin: 15px 0 5px 10px;
-    position: fixed;
+    position: absolute;
     display: inline-block;
 }
 
@@ -54,6 +55,7 @@
 .content-main {
     width: 100%;
     margin-bottom: 20px;
+    display: inline-table;
 }
 
 .content-main-view {

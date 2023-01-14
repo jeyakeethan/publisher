@@ -7,7 +7,7 @@ async function loginUser(credentials) {
  return fetch('http://localhost:8081/login', {
    method: 'POST',
    headers: {
-    'Content-Type': 'application/json',
+    'content-type': 'application/json',
     'accept': 'application/json'
    },
    body: JSON.stringify(credentials)

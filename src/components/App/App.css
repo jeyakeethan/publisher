@@ -14,19 +14,63 @@
 }
 
 .wrapper {
-    padding: 20px;
+  height: 100vh;
+  width: 100%;
+  padding-top: 50px;
 }
 
 .app-header {
-  min-height: 8vh;
+  min-height: 50px;
+  width: 100%;
+  top:0;
   padding: 5px 25px;
   background-color: #052158;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
+  position: fixed;
   font-size: calc(10px + 2vmin);
   color: white;
+  z-index: 100
+}
+
+.logout-btn {
+  margin: 12px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: inline-block;
+}
+
+.logout-btn:hover {
+  color: rgb(252, 78, 78);
+  box-shadow: 0 5px 15px rgba(236, 235, 240, 0.137);
+}
+
+.welcome-note-wrapper {
+  margin: 7px 10px;
+}
+
+.sidebar {
+  display: block;
+  width: 250px;
+  border-right: 1px solid;
+  left: 0;
+  float: left;
+  position: relative;
+  min-height: 90vh;
+  z-index: 99
+}
+
+.main-container {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+}
+
+.container {
+  display: block;
+  position: relative;
+  min-width: 100%;
+  padding-left: 255px;
 }
 
 .App-link {
