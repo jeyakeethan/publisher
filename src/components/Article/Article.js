@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Article.css';
 import { FiEdit, FiSave } from 'react-icons/fi';
-import Service, {saveArticle} from '../Service/Service';
+import {saveArticle, updateTitle, updateContent, updateReadTime} from '../Service/Service';
 
 class Article extends Component {
 
@@ -27,12 +27,19 @@ class Article extends Component {
   changeTitle(event) {
     event.preventDefault();
     if (this.state.allowChangeTitle) {
-      this.setState({ article: { title: event.target.value } });
+      const article = this.state.article;
+      article.title = event.target.value;
+      this.setState({article});
     }
   }
   saveTitle(event) {
+    const id = this.state.article?.id;
+    const title = this.state.article?.title;
+    const article = {id, title};
+    updateTitle(article);
     this.setState({ allowChangeTitle: false });
   }
+
   editContent(event) {
     this.setState({ allowChangeContent: true });
   }
@@ -48,8 +55,7 @@ class Article extends Component {
     const id = this.state.article?.id;
     const content = this.state.article?.content;
     const article = {id, content};
-    console.log(article);
-    saveArticle(article);
+    updateContent(article);
     this.setState({ allowChangeContent: false });
   }
 

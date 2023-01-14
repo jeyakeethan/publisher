@@ -1,4 +1,5 @@
 import React, { useState }  from 'react';
+import {listArticles} from '../Service/Service';
 import './Dashboard.css';
 
 import Article from '../Article/Article';

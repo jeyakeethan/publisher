@@ -1,8 +1,13 @@
+.style-wrapper {
+    padding-bottom: 30px;
+}
+
 .main-wrapper {
     width: 100%;
     min-height: 80vh;
     padding: 10px;
     border: 0.5px solid slategrey;
+    margin-bottom: 20px;
 }
 
 .title-wrapper {
@@ -16,14 +21,13 @@
 .content-title {
     width: 100%;
     margin-bottom: 3px;
-    text-transform: uppercase;
     font-size: 24px;
     font-weight: bold;
-    color: transparent;
-    text-shadow: 0px 0px 0px rgb(248, 78, 48);
 }
 
 .content-title-view {
+    color: transparent;
+    text-shadow: 0px 0px 0px rgb(248, 78, 48);
     outline: none !important;
     border-style: none;
 }
@@ -49,18 +53,24 @@
 }
 
 .content-wrapper {
-
+    min-height: -moz-calc(100% - 200px);
+    min-height: -webkit-calc(100% - 200px);
+    min-height: calc(100vh - 200px);
 }
 
 .content-main {
     width: 100%;
     margin-bottom: 20px;
-    display: inline-table;
+    height: -moz-calc(100% - 200px);
+    height: -webkit-calc(100% - 200px);
+    height: calc(100vh - 200px);
 }
 
 .content-main-view {
+    display: inline-table;
+    color: transparent;
+    text-shadow: 0px 0px 0px rgb(19, 19, 19);
     border-style: none;
-    
 }
 
 .content-main-view:focus {

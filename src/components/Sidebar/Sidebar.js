@@ -24,7 +24,7 @@ export default function Sidebar(props) {
 
 function getCategoriesElements(list) {
   console.log(list);
-  {list.map((item,index)=>{
-    return <li key={index}>{item}</li>
-})}
+//   {list.map((item,index)=>{
+//     return <li key={index}>{item}</li>
+// })}
 }
