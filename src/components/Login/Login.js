@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import './Login.css';
 import PropTypes from 'prop-types';
+import './Login.css';
 
 async function loginUser(credentials) {
- return fetch('http://localhost:8080/login', {
+  console.log(JSON.stringify(credentials));
+ return fetch('http://localhost:8081/login', {
    method: 'POST',
    headers: {
-     'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'accept': 'application/json'
    },
    body: JSON.stringify(credentials)
  })
@@ -16,13 +18,15 @@ async function loginUser(credentials) {
 export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
-  
+
   const handleSubmit = async e => {
     e.preventDefault();
     const token = await loginUser({
-      username,
-      password
+      "username" : username,
+      "password" : password
     });
+    localStorage.setItem('auth-token', JSON.stringify(token), {token});
+    console.log('User login successful!');
     setToken(token);
   }
   
@@ -31,11 +35,11 @@ export default function Login({ setToken }) {
       <h1 className='login-title'>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Username</p>
+          <span className='login-label'>Username</span>
           <input className='input-field' type='text' name='username' onChange={e => setUserName(e.target.value)}/>
         </label>
         <label>
-          <p>Password</p>
+          <span className='login-label'>Password</span>
           <input className='input-field' type='password' name='password' onChange={e => setPassword(e.target.value)}/>
         </label>
         <div>

@@ -1,0 +1,12 @@
+.welcome-note-wrapper {
+    margin: 5px 0;
+}
+
+.sidebar {
+    display: block;
+    width: 250px;
+    border: 2px solid;
+    float: left;
+    height: 100vh;
+    margin-right: 5px;
+}
