@@ -3,7 +3,7 @@
     flex-direction: column;
     border: 2px solid;
     border-radius: 20px;
-    margin: 0 200px;
+    margin: 70px 400px;
     min-width: 50vw;
 }
 
@@ -59,7 +59,7 @@ hr {
     margin-bottom: 25px;
 }
 
-button {
+.cancel-button, .signup-button {
     background-color: #04AA6D;
     color: white;
     padding: 14px 20px;

@@ -33,28 +33,39 @@ export async function loginUser(credentials) {
       'accept': 'application/json'
     },
     body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
+  }).then(data => data.json())
 }
 
 export function listArticles(category = "") {
-  fetch('http://localhost:8081/article/list' + category)
+  return fetch('http://localhost:8081/article/list?category=' + category)
     .then(response => response.json())
     .then(data => {
-      return data;
-    });
+      console.log(data);
+      return data});
 }
 
-export function saveArticle(article) {
+function callSaveArticle(operation, article) {
   console.log(JSON.stringify(article));
-  fetch('http://localhost:8081/article/save', {
+  let outcome = fetch('http://localhost:8081/article/save?operation=' + operation, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       'accept': 'application/json'
     },
     body: JSON.stringify(article)
-  })
+  }).then(
+    (data) => {
+      if (data.status === 200) {
+        return true;
+      }
+      return false;
+    }
+  )
+  return outcome;
+}
+
+export function publishArticle(article) {
+  return callSaveArticle("", article);
 }
 
 export function updateTitle(article) {
@@ -91,4 +102,23 @@ export function updateReadTime(article) {
     },
     body: JSON.stringify(article)
   })
+}
+
+export function subcribeAuthor(username, author) {
+  let outcome = fetch('http://localhost:8081/subsciption/save?operation=read-time', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': 'application/json'
+    },
+    body: JSON.stringify({username, author})
+  }).then(
+    (data) => {
+      if (data.status === 200) {
+        return true;
+      }
+      return false;
+    }
+  )
+  return outcome;
 }

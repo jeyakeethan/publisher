@@ -1,4 +1,6 @@
-import React, { useState }  from 'react';
+
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link, Navigate, useParams } from 'react-router-dom';
 import './Sidebar.css';
 
 import Article from '../Article/Article';
@@ -14,17 +16,20 @@ fetch('http://localhost:8081/article/categories')
 export default function Sidebar(props) {
 
   const [categories, setCategories] = useState(list);
-  console.log(getCategoriesElements(categories));
+  const menuList = ["Dashboard", "Notifications"];
   return (
-    <ul element='categories-container'>
-      {getCategoriesElements(categories)}
-    </ul>
+    <div className='categories-container'>
+      <ul className='menu'>
+        <BrowserRouter>
+          {menuList.map(function (name, index) {
+            return <li key={index}>
+              <a href={"/" + name.toLowerCase()}>
+                {name}
+              </a>
+            </li>;
+          })}
+        </BrowserRouter>
+      </ul>
+    </div>
   );
-}
-
-function getCategoriesElements(list) {
-  console.log(list);
-//   {list.map((item,index)=>{
-//     return <li key={index}>{item}</li>
-// })}
 }

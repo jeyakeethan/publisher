@@ -1,27 +1,28 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import {listArticles} from '../Service/Service';
 import './Dashboard.css';
 
 import Article from '../Article/Article';
 
-let list = {}
-fetch('http://localhost:8081/article/list')
-  .then(response => response.json())
-  .then(data => {
-    list = data;
-  });
 
 export default function Dashboard(props) {
-
-  const [articles, setArticles] = useState(list);
-  console.log(list);
+  const [articles, setArticles] = useState({});
+  useEffect(() => {
+    let mounted = true;
+    listArticles().then(data => {
+        if(mounted) {
+          setArticles(data)
+        }
+      })
+    return () => mounted = false;
+  }, []);
+  const article = articles[0];
+  console.log(articles);
   return (
     <div className='dashboard-container'>
       <Article
-          article={articles[0]}
-          editMode={false}
+          article={article}
         />
     </div>
-
   );
 }
