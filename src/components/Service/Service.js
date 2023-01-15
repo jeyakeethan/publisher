@@ -1,7 +1,41 @@
+import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react';
 
 import Article from '../Article/Article';
 
+export function signup(user) {
+  console.log(JSON.stringify(user));
+  let outcome = fetch('http://localhost:8081/user/signup', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': 'application/json'
+    },
+    // It should be encrypted using a public key
+    body: JSON.stringify(user)
+  }).then(
+    (data) => {
+      if (data.status === 200) {
+        return true;
+      }
+      return false;
+    }
+  )
+  return outcome;
+}
+
+export async function loginUser(credentials) {
+  console.log(JSON.stringify(credentials));
+  return fetch('http://localhost:8081/user/login', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+}
 
 export function listArticles(category = "") {
   fetch('http://localhost:8081/article/list' + category)

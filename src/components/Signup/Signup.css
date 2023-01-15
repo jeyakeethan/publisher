@@ -1,0 +1,108 @@
+.signup-wrapper {
+    display: grid;
+    flex-direction: column;
+    border: 2px solid;
+    border-radius: 20px;
+    margin: 0 200px;
+    min-width: 50vw;
+}
+
+.input-field {
+    padding: 5px;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.signup-title {
+    margin: 20px 0 0 15px;
+}
+
+.signup-sub-title {
+    color: #3639f4;
+    margin: 10px 0 0 15px;
+}
+
+.signup-sub-title-red {
+    color: #f43636;
+    margin-bottom: 20px;
+}
+
+.signup-label {
+    margin: 5px 0;
+    ;
+}
+
+* {
+    box-sizing: border-box
+}
+
+input[type=text],
+input[type=password],
+select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+select:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.cancel-button {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+.signup-button {
+    padding: 14px 20px;
+    background-color: #3639f4;
+}
+
+.cancel-button,
+.signup-button {
+    float: left;
+    width: 50%;
+}
+
+.form-container {
+    padding: 16px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 300px) {
+    .cancelbtn,
+    .signupbtn {
+        width: 100%;
+    }
+}

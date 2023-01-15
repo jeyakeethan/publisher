@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../Login/Login';
 import Dashboard from '../Dashboard/Dashboard';
 import Sidebar from '../Sidebar/Sidebar';
+import Signup from '../Signup/Signup';
 import Article from '../Article/Article';
 import Preferences from '../Preferences/Preferences';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,6 +48,7 @@ function App() {
             <Routes>
               <Route path='*' element={<Navigate to="/" />} />
               <Route exact path="/" element={<Navigate to="/dashboard" />}/>
+              <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/dashboard" element={<Dashboard />} />
               <Route path="/preferences" element="{<Preferences/>}" />
             </Routes>
