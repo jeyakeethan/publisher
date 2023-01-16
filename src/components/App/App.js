@@ -62,6 +62,7 @@ function App() {
               <Route exact path="/dashboard" element={<Dashboard />} />
               <Route exact path="/newpost" element={<NewPost />} />
               <Route exact path="/dashboard:id" element={<Dashboard />} />
+              <Route exact path="/category:id" element={<Dashboard />} />
               <Route path="/preferences" element="{<Preferences/>}" />
               <Route path='*' element={<Navigate to="/" />} />
             </Routes>

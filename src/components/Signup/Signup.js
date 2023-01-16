@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Signup.css';
 import { signup } from '../Service/Service';
+import { Navigate } from 'react-router-dom';
+import Dashboard from '../Dashboard/Dashboard';
 
 
 async function callSignUpService(user) {
@@ -58,7 +60,9 @@ export default function Signup() {
         <h6 className='signup-sub-title'>Please login with the credentials that you have given when you signed up.</h6>
       </div>);
 
+
   }
+
   return (
     <div>
 
@@ -338,7 +342,7 @@ export default function Signup() {
             <h6 hidden={!message} className='signup-sub-title-red'>{message}</h6>
 
             <div className="clearfix">
-              <button type="button" className="cancel-button">Cancel</button>
+              <button type="button" className="cancel-button" onClick={() => (<Navigate to={<Dashboard />} />) }>Cancel</button>
               <button type="submit" className='signup-button' onClick={handleSubmit}>Sign Up</button>
             </div>
           </div>

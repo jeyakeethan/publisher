@@ -9,7 +9,7 @@ export default function Dashboard(props) {
   const [articles, setArticles] = useState({});
   useEffect(() => {
     let mounted = true;
-    listArticles().then(data => {
+    listArticles('').then(data => {
         if(mounted) {
           setArticles(data)
         }

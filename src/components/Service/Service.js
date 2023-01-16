@@ -36,12 +36,28 @@ export async function loginUser(credentials) {
   }).then(data => data.json())
 }
 
-export function listArticles(category = "") {
-  return fetch('http://localhost:8081/article/list?category=' + category)
+export function listCategories() {
+  return fetch('http://localhost:8081/category/list')
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      return data});
+      return data
+    });
+}
+
+export function listArticles(category = "") {
+  let url = "";
+  if (category === "") {
+    url = 'http://localhost:8081/article/list';
+  } else {
+    url = 'http://localhost:8081/category/' + category;
+  }
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      return data
+    });
 }
 
 function callSaveArticle(operation, article) {
@@ -111,7 +127,7 @@ export function subcribeAuthor(username, author) {
       'content-type': 'application/json',
       'accept': 'application/json'
     },
-    body: JSON.stringify({username, author})
+    body: JSON.stringify({ username, author })
   }).then(
     (data) => {
       if (data.status === 200) {

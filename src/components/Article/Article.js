@@ -7,6 +7,9 @@ class Article extends Component {
 
   constructor({ article = {}, editMode = false, newMode = false, setSubmitted = null, subscribed = true }) {
     console.log(article);
+    if (article =={}){
+      article = {'title':'', 'content':'', 'category':'', 'imageURL':'', 'readTime':'', 'footerContent':''};
+    }
     super();
     this.state = {
       article: article,
