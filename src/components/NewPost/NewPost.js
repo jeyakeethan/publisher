@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+import { listCategories } from '../Service/Service';
 import './NewPost.css';
 
 import Article from '../Article/Article';
@@ -7,6 +8,16 @@ import { saveArticle } from '../Service/Service';
 
 export default function NewPost(props) {
   const [submitted, setSubmitted] = useState();
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    listCategories().then(data => {
+      if (mounted) {
+        setCategories(data)
+      }
+    })
+    return () => mounted = false;
+  }, []);
 
   if (!submitted) {
     return (
@@ -15,6 +26,7 @@ export default function NewPost(props) {
           editMode={true}
           newMode={true}
           setSubmitted={setSubmitted}
+          categories={categories}
         />
       </div>
 

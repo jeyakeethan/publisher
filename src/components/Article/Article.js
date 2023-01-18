@@ -5,10 +5,10 @@ import { publishArticle, updateTitle, updateContent, updateReadTime, subcribeAut
 
 class Article extends Component {
 
-  constructor({ article = {}, editMode = false, newMode = false, setSubmitted = null, subscribed = true }) {
+  constructor({ article = {}, editMode = false, newMode = false, setSubmitted = null, subscribed = true, categories = [] }) {
     console.log(article);
-    if (article =={}){
-      article = {'title':'', 'content':'', 'category':'', 'imageURL':'', 'readTime':'', 'footerContent':''};
+    if (article == {}) {
+      article = { 'title': '', 'content': '', 'category': '', 'imageURL': '', 'readTime': '', 'footerContent': '' };
     }
     super();
     this.state = {
@@ -16,7 +16,9 @@ class Article extends Component {
       allowChangeTitle: editMode,
       allowChangeContent: editMode,
       newMode: newMode,
-      subscribed: subscribed
+      subscribed: subscribed,
+      message: '',
+      categories:categories
     };
     this.changeTitle = this.changeTitle.bind(this);
     this.editTitle = this.editTitle.bind(this);
@@ -107,6 +109,8 @@ class Article extends Component {
       }
       if (outcome) {
         this.setSubmitted(true);
+      } else {
+        this.setState({ message: "Unable to fulfil the request!" });
       }
     }
   }
@@ -116,11 +120,16 @@ class Article extends Component {
         <div className='main-wrapper'>
           {this.state.newMode && (
             <div className='category-wrapper'>
-              <input type='text'
-                className='category'
-                placeholder='Category'
+              <select className='form-category'
                 value={this.state.article?.category}
-                onChange={this.changeCategory} />
+                onChange={this.changeCategory}>
+                <option>Please choose one category</option>
+                {this.state.categories.map((option, index) => {
+                  return <option key={index} >
+                    {option}
+                  </option>
+                })}
+              </select>
             </div>)
           }
           {!this.state.newMode && (<div className='author-wrapper'>
@@ -177,7 +186,7 @@ class Article extends Component {
                   value={this.state.article?.readTime}
                   onChange={this.changeReadTime} />
               </div>
-
+              {this.state.message && <label className='error-message'>{this.state.message}</label>}
               <div>
                 <div className="clearfix">
                   <button className='publish-button' onClick={() => this.saveArticle(this.state)}>Publish</button>

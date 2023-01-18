@@ -36,7 +36,43 @@
   background-color: #4CAF50;
 }
 
-.categories-container {
+.category-container {
   width: 100%;
-  padding: 10px;
+  padding: 30px 0;
+}
+
+.category-label {
+  display: block;
+  background-color: #01041a;
+  color: rgb(255, 255, 255);
+  padding: 10px 16px;
+}
+
+.category {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(15, 89, 185);
+}
+
+.category li {
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+
+.category li a {
+  display: block;
+  color: white;
+  padding: 5px 16px;
+  text-decoration: none;
+}
+
+.category li a:hover:not(.active) {
+  background-color: rgb(1, 14, 56);
+}
+
+.category li a.active {
+  float: right;
 }

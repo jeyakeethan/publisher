@@ -24,7 +24,7 @@ export function signup(user) {
   return outcome;
 }
 
-export async function loginUser(credentials) {
+export function login(credentials) {
   console.log(JSON.stringify(credentials));
   return fetch('http://localhost:8081/user/login', {
     method: 'POST',
@@ -52,12 +52,17 @@ export function listArticles(category = "") {
   } else {
     url = 'http://localhost:8081/category/' + category;
   }
-  return fetch(url)
+  const articles = fetch(url)
     .then(response => response.json())
     .then(data => {
+      // const articleMap = {};
+      // data.array.forEach(element => {
+      //   articleMap[element.id] = element;
+      // });
+      return data;
       console.log(data);
-      return data
     });
+    return articles;
 }
 
 function callSaveArticle(operation, article) {

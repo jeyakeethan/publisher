@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { login } from '../Service/Service';
 import './Login.css';
 
+import bcrypt from 'bcryptjs';
+
 async function loginUser(credentials) {
-  console.log(JSON.stringify(credentials));
-  return fetch('http://localhost:8081/user/login', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      'accept': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
+  console.log(credentials);
+  if (credentials.username == null || credentials.password == null) {
+    return "Please fill all required fields";
+  }
+  const salt = "$2a$10$CwTycUXWue0Thq9StjUM0u";
+  credentials.password = bcrypt.hashSync(credentials.password, salt);
+  console.log(credentials);
+  const token = await login(credentials);
+
+  return token;
 }
 
 export default function Login({ setToken }) {
@@ -21,13 +24,18 @@ export default function Login({ setToken }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const salt = "$2a$10$CwTycUXWue0Thq9StjUM0u";
     const token = await loginUser({
       "username": username,
       "password": password
     });
-    localStorage.setItem('auth-token', JSON.stringify(token), { token });
-    console.log('User login successful!');
-    setToken(token);
+    if (token.username) {
+      localStorage.setItem('auth-token', JSON.stringify(token), { token });
+      console.log('User login successful!');
+      setToken(token);
+    } else {
+      console.log('User login failure!');
+    }
   }
 
   return (

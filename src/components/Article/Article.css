@@ -110,7 +110,7 @@
     height: 150px;
 }
 
-.image-url, read-time, .category {
+.image-url, read-time, .form-category {
     width: 100%;
     margin-bottom: 10px;
 }
@@ -124,4 +124,9 @@
     cursor: pointer;
     width: 100%;
     opacity: 0.9;   
+}
+
+.error-message {
+    color: #df0f0f;
+    margin: 5px 20px;
 }

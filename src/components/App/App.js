@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Login from '../Login/Login';
 import Dashboard from '../Dashboard/Dashboard';
+import Notification from '../Notification/Notification';
 import Sidebar from '../Sidebar/Sidebar';
 import Signup from '../Signup/Signup';
 import NewPost from '../NewPost/NewPost';
@@ -36,11 +37,10 @@ function App() {
 
   const logout = () => {
     localStorage.removeItem('auth-token');
-    setToken(null)
+    setToken(null);
   }
 
-  const user = JSON.parse(localStorage.getItem('auth-token'));
-  console.log(user.firstName);
+  const user = token;
 
   return (
     <div className="wrapper">
@@ -58,13 +58,13 @@ function App() {
         <div className='container'>
           <BrowserRouter>
             <Routes>
-              <Route exact path="/" element={<Navigate to="/dashboard" />} />
               <Route exact path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/dashboard/:id" element={<Dashboard />} />
+              <Route exact path="/category/:id" element={<Dashboard />} />
+              <Route exact path="/notifications" element={<Notification />} />
               <Route exact path="/newpost" element={<NewPost />} />
-              <Route exact path="/dashboard:id" element={<Dashboard />} />
-              <Route exact path="/category:id" element={<Dashboard />} />
               <Route path="/preferences" element="{<Preferences/>}" />
-              <Route path='*' element={<Navigate to="/" />} />
+              {/* <Route path='*' element={<Navigate to="/" />} /> */}
             </Routes>
           </BrowserRouter>
         </div>

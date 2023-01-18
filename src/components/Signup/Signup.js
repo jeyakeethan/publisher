@@ -5,6 +5,8 @@ import { signup } from '../Service/Service';
 import { Navigate } from 'react-router-dom';
 import Dashboard from '../Dashboard/Dashboard';
 
+import bcrypt from 'bcryptjs';
+
 
 async function callSignUpService(user) {
   console.log(user);
@@ -17,6 +19,9 @@ async function callSignUpService(user) {
   if (user.password !== user.psrepeat) {
     return "Passwords are not Same"
   }
+  const salt = "$2a$10$CwTycUXWue0Thq9StjUM0u";
+  user.password = bcrypt.hashSync(user.password, salt);
+  console.log(user);
   let success = await signup(user);
 
   if (success) {
