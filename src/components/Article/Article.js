@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import './Article.css';
 import { FiEdit, FiSave } from 'react-icons/fi';
 import { publishArticle, updateTitle, updateContent, updateReadTime, subcribeAuthor } from '../Service/Service';
@@ -7,10 +7,14 @@ class Article extends Component {
 
   constructor({ article = {}, editMode = false, newMode = false, setSubmitted = null, subscribed = true, categories = [] }) {
     console.log(article);
+    super();
     if (article == {}) {
       article = { 'title': '', 'content': '', 'category': '', 'imageURL': '', 'readTime': '', 'footerContent': '' };
     }
-    super();
+    const user = localStorage.getItem('auth-token');
+    if (newMode) {
+      article['author'] = user.username;
+    }
     this.state = {
       article: article,
       allowChangeTitle: editMode,
@@ -18,7 +22,8 @@ class Article extends Component {
       newMode: newMode,
       subscribed: subscribed,
       message: '',
-      categories:categories
+      categories:categories,
+      user: user
     };
     this.changeTitle = this.changeTitle.bind(this);
     this.editTitle = this.editTitle.bind(this);
@@ -31,6 +36,7 @@ class Article extends Component {
     this.changeImageURL = this.changeImageURL.bind(this);
     this.changeReadTime = this.changeReadTime.bind(this);
     this.setSubmitted = setSubmitted;
+    this.render();
   }
 
   editTitle(event) {
@@ -103,8 +109,9 @@ class Article extends Component {
   async saveArticle(state) {
     const article = state.article;
     if (article != {}) {
-      let outcome = false;
+      let outcome = false;  
       if (state.article != undefined) {
+        state.article.author = this.state.user.username;
         outcome = await publishArticle(article);
       }
       if (outcome) {

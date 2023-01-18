@@ -45,9 +45,9 @@ export function listCategories() {
     });
 }
 
-export function listArticles(category = "") {
+export function listArticles(category = '') {
   let url = "";
-  if (category === "") {
+  if (category === '') {
     url = 'http://localhost:8081/article/list';
   } else {
     url = 'http://localhost:8081/category/' + category;
@@ -59,8 +59,8 @@ export function listArticles(category = "") {
       // data.array.forEach(element => {
       //   articleMap[element.id] = element;
       // });
-      return data;
       console.log(data);
+      return data;
     });
     return articles;
 }
