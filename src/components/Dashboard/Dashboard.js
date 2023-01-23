@@ -37,11 +37,10 @@ export default function Dashboard(props) {
     const article = articles[id];
     console.log(id);
     console.log(article);
+    const articleElement = new Article({article});
     return (
       <div className='dashboard-container'>
-        <Article
-          article={article}
-        />
+        {articleElement.render()}
       </div>
     );
     } else {

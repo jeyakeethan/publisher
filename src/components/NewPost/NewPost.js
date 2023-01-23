@@ -20,14 +20,15 @@ export default function NewPost(props) {
   }, []);
 
   if (!submitted) {
+    const articleElement = new Article({
+      editMode: true,
+      newMode: true,
+      setSubmitted: setSubmitted,
+      categories: categories
+    });
     return (
       <div className='new-post-container'>
-        <Article
-          editMode={true}
-          newMode={true}
-          setSubmitted={setSubmitted}
-          categories={categories}
-        />
+        {articleElement.render()}
       </div>
 
     );

@@ -24,6 +24,11 @@ export default function Sidebar(props) {
     <div>
       <div className='menu-container'>
         <ul className='menu'>
+          <li className='new-post-btn'>
+            <a href={"/newpost"}>
+              New Post
+            </a>
+          </li>
           {menuList.map(function (name, index) {
             return <li key={index}>
               <a href={"/" + name.toLowerCase()}>

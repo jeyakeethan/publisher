@@ -2,10 +2,12 @@ import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react';
 
 import Article from '../Article/Article';
+const server = 'http://localhost:8081';
+// const server = 'http://publishertomcatcontainer-env.eba-rgtzqate.us-east-1.elasticbeanstalk.com';
 
 export function signup(user) {
   console.log(JSON.stringify(user));
-  let outcome = fetch('http://localhost:8081/user/signup', {
+  let outcome = fetch(server + '/user/signup', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -26,7 +28,7 @@ export function signup(user) {
 
 export function login(credentials) {
   console.log(JSON.stringify(credentials));
-  return fetch('http://localhost:8081/user/login', {
+  return fetch(server + '/user/login', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -37,7 +39,7 @@ export function login(credentials) {
 }
 
 export function listCategories() {
-  return fetch('http://localhost:8081/category/list')
+  return fetch(server + '/category/list')
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -48,9 +50,9 @@ export function listCategories() {
 export function listArticles(category = '') {
   let url = "";
   if (category === '') {
-    url = 'http://localhost:8081/article/list';
+    url = server + '/article/list';
   } else {
-    url = 'http://localhost:8081/category/' + category;
+    url = server + '/category/' + category;
   }
   const articles = fetch(url)
     .then(response => response.json())
@@ -67,7 +69,7 @@ export function listArticles(category = '') {
 
 function callSaveArticle(operation, article) {
   console.log(JSON.stringify(article));
-  let outcome = fetch('http://localhost:8081/article/save?operation=' + operation, {
+  let outcome = fetch(server + '/article/save?operation=' + operation, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -91,7 +93,7 @@ export function publishArticle(article) {
 
 export function updateTitle(article) {
   console.log(JSON.stringify(article));
-  fetch('http://localhost:8081/article/save?operation=title', {
+  fetch(server + '/article/save?operation=title', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -103,7 +105,7 @@ export function updateTitle(article) {
 
 export function updateContent(article) {
   console.log(JSON.stringify(article));
-  fetch('http://localhost:8081/article/save?operation=content', {
+  fetch(server + '/article/save?operation=content', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -115,7 +117,7 @@ export function updateContent(article) {
 
 export function updateReadTime(article) {
   console.log(JSON.stringify(article));
-  fetch('http://localhost:8081/article/save?operation=read-time', {
+  fetch(server + '/article/save?operation=read-time', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -126,7 +128,7 @@ export function updateReadTime(article) {
 }
 
 export function subcribeAuthor(username, author) {
-  let outcome = fetch('http://localhost:8081/subsciption/save?operation=read-time', {
+  let outcome = fetch(server + '/subsciption/save?operation=read-time', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

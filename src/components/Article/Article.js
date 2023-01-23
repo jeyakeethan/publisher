@@ -5,15 +5,15 @@ import { publishArticle, updateTitle, updateContent, updateReadTime, subcribeAut
 
 class Article extends Component {
 
-  constructor({ article = {}, editMode = false, newMode = false, setSubmitted = null, subscribed = true, categories = [] }) {
+  constructor({ article = {}, editMode = false, newMode, setSubmitted = null, subscribed = true, categories = [] }) {
     console.log(article);
     super();
     if (article == {}) {
-      article = { 'title': '', 'content': '', 'category': '', 'imageURL': '', 'readTime': '', 'footerContent': '' };
+      article = { 'title': '', 'content': '', 'category': '', 'imageURL': '', 'readTime': '', 'footerContent': '', 'author': '' };
     }
     const user = localStorage.getItem('auth-token');
     if (newMode) {
-      article['author'] = user.username;
+      article.author = user.username;
     }
     this.state = {
       article: article,

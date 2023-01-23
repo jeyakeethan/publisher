@@ -32,6 +32,10 @@
   float: right;
 }
 
+.new-post-btn {
+  background-color: rgb(231, 16, 16);
+}
+
 .active {
   background-color: #4CAF50;
 }
