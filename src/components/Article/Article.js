@@ -1,12 +1,14 @@
-import React, { Component, useState, useEffect } from 'react';
+import { React, Component, useState, useEffect } from 'react';
 import './Article.css';
 import { FiEdit, FiSave } from 'react-icons/fi';
 import { publishArticle, updateTitle, updateContent, updateReadTime, subcribeAuthor } from '../Service/Service';
 
 class Article extends Component {
-
+  
   constructor({ article = {}, editMode = false, newMode, setSubmitted = null, subscribed = true, categories = [] }) {
     console.log(article);
+
+  const localStorage = window.localStorage;
     super();
     if (article == {}) {
       article = { 'title': '', 'content': '', 'category': '', 'imageURL': '', 'readTime': '', 'footerContent': '', 'author': '' };

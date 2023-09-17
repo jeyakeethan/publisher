@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../Service/Service';
 import './Login.css';
@@ -22,6 +22,7 @@ export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
+  const localStorage = window.localStorage;
   const handleSubmit = async e => {
     e.preventDefault();
     const salt = "$2a$10$CwTycUXWue0Thq9StjUM0u";
