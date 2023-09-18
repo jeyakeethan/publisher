@@ -23,6 +23,7 @@ export default function Login({ setToken }) {
   console.log("Login page")
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState(null);
 
   const localStorage = window.localStorage;
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ export default function Login({ setToken }) {
       setToken(token);
       navigate('/dashboard');
     } else {
+      setError('Invalid credentials. Try again.');
       console.log('User login failure!');
     }
   }
@@ -57,6 +59,7 @@ export default function Login({ setToken }) {
             <span className='login-label'>Password</span>
             <input className='input-field' type='password' name='password' onChange={e => setPassword(e.target.value)} />
           </label>
+          {error && <div className='error-message'>{error}</div>}
           <div>
             <button className='submit-button' type='submit'>Login</button>
           </div>

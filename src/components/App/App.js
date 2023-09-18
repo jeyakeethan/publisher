@@ -18,13 +18,16 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Simulate an asynchronous check for an existing token, e.g., from local storage
+  // Simulate an asynchronous check for an existing token
   useEffect(() => {
     const checkToken = async () => {
       // Simulate an API call or local storage retrieval
       const storedToken = localStorage.getItem('auth-token');
       if (storedToken) {
         setToken(JSON.parse(storedToken));
+      } else {
+        // Redirect to the login page when no token is available
+        navigate('/login');
       }
       setLoading(false);
     };
