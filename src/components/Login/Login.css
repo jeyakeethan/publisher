@@ -41,3 +41,13 @@
 .signup-link {
     
 }
+
+.login-note {
+    display: block;
+    position: absolute;
+    font-weight: bold;
+    bottom: 30px;
+    align-items: center;
+    right: 50px;
+    line-height: normal;
+}

@@ -64,8 +64,6 @@ export default function Signup() {
         <h1 className='signup-title'>{message}</h1>
         <h6 className='signup-sub-title'>Please login with the credentials that you have given when you signed up.</h6>
       </div>);
-
-
   }
 
   return (
