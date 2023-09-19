@@ -25,6 +25,9 @@ function App() {
       const storedToken = localStorage.getItem('auth-token');
       if (storedToken) {
         setToken(JSON.parse(storedToken));
+        if(location.pathname === '/') {
+          navigate('/dashboard');
+        }
       } else if (location.pathname !== '/signup') {
         // Redirect to the login page when no token is available
         navigate('/login');
@@ -76,7 +79,7 @@ function App() {
               <Route path="/notifications" element={<Notification />} />
               <Route path="/newpost" element={<NewPost />} />
               <Route path="/preferences" element={<Preferences />} />
-              <Route path='*' element={() => { navigate('/dashboard'); return null; }} />
+              <Route path='*' element={() => { navigate('/dashboard');return null;}} />
             </Routes>
           </div>
         </div>
