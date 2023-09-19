@@ -51,7 +51,7 @@ export default function Dashboard(props) {
             {articles.map((item,index) => {
               return <li key={item.id}>
                 <a href={"/dashboard/" + index}>
-                  {!isCategorized && "[" + item.category + "] -"} {item.title}
+                  {!isCategorized && item.category + " - "} {item.title}
                 </a>
               </li>;
             })}
