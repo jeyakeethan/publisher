@@ -141,13 +141,6 @@ class Article extends Component {
               </select>
             </div>)
           }
-          {!this.state.newMode && (<div className='author-wrapper'>
-            <button className='subscribe-button' disabled={!this.state.subscribed} onClick={() => this.subcribe(this.state)}>
-              {this.state.subscribed ? 'Subscribe' : 'Subscribed'}
-            </button>
-            <label className='author-label'>Author: {this.state.article?.author}</label>
-          </div>)
-          }
           <div className='title-wrapper'>
             <input type='text'
               className={
@@ -161,6 +154,13 @@ class Article extends Component {
               : <FiEdit className='title-edit-button' onClick={this.editTitle} />)
             }
           </div>
+          {!this.state.newMode && (<div className='author-wrapper'>
+            <button className='subscribe-button' disabled={!this.state.subscribed} onClick={() => this.subcribe(this.state)}>
+              {this.state.subscribed ? 'Subscribe' : 'Subscribed'}
+            </button>
+            <label className='author-label'>Author: {this.state.article?.author}</label>
+          </div>)
+          }
           <div className='content-wrapper'>
             <textarea
               className={
