@@ -49,7 +49,7 @@ export default function Dashboard(props) {
           <p className='category-title'>{isCategorized && id.toUpperCase()}</p>
           <ol>
             {articles.map((item,index) => {
-              return <li key={item.id}>
+              return <li key={item.id} className='item-li'>
                 <a className = "item-title" href={"/dashboard/" + index}>
                 {item.title} {!isCategorized && <label className='item-title-label'>{"| " + item.category}</label>} 
                 </a>
