@@ -25,7 +25,7 @@ function App() {
       const storedToken = localStorage.getItem('auth-token');
       if (storedToken) {
         setToken(JSON.parse(storedToken));
-      } else {
+      } else if (location.pathname !== '/signup') {
         // Redirect to the login page when no token is available
         navigate('/login');
       }

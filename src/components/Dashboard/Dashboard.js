@@ -46,11 +46,12 @@ export default function Dashboard(props) {
     } else {
       return (
         <div className='dashboard-container'>
+          <p>{isCategorized && id.toUpperCase()}</p>
           <ol>
             {articles.map((item,index) => {
               return <li key={item.id}>
                 <a href={"/dashboard/" + index}>
-                  {item.title}
+                  {!isCategorized && "[" + item.category + "] -"} {item.title}
                 </a>
               </li>;
             })}
