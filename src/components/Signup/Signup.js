@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Signup.css';
 import { signup } from '../Service/Service';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Dashboard from '../Dashboard/Dashboard';
 
 import bcrypt from 'bcryptjs';
@@ -42,6 +42,11 @@ export default function Signup() {
   const [password, setPassword] = useState();
   const [psrepeat, setPsrepeat] = useState();
   const [message, setMessage] = useState();
+
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate('/login');
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -345,7 +350,7 @@ export default function Signup() {
             <h6 hidden={!message} className='signup-sub-title-red'>{message}</h6>
 
             <div className="clearfix">
-              <button type="button" className="cancel-button" onClick={() => (<Navigate to={<Dashboard />} />) }>Cancel</button>
+              <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
               <button type="submit" className='signup-button' onClick={handleSubmit}>Sign Up</button>
             </div>
           </div>
