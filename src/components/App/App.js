@@ -9,14 +9,20 @@ import NewPost from '../NewPost/NewPost';
 import Preferences from '../Preferences/Preferences';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../images/logo.svg';
 import { FiLogOut } from 'react-icons/fi';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const [showSidebar, setShowSidebar] = useState(true);
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   // Simulate an asynchronous check for an existing token
   useEffect(() => {
@@ -57,7 +63,8 @@ function App() {
     <div className="wrapper">
       {token && !isLoginPage && (
         <div className='app-header'>
-          <span>Publisher</span>
+          <FontAwesomeIcon className='sidebar-btn' icon={faBars} onClick={toggleSidebar}/>
+          <span className='title-main'>Publisher</span>
           <FiLogOut className='logout-btn' onClick={logout} />
         </div>
       )}
@@ -68,7 +75,7 @@ function App() {
       )}
       {token && !isLoginPage && (
         <div className='main-container'>
-          <div className='sidebar'>
+          <div className={showSidebar ? 'sidebar-toggle-1' : 'sidebar-toggle-2'}>
             <Sidebar />
           </div>
           <div className='container'>
