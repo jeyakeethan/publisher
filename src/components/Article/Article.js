@@ -142,7 +142,7 @@ class Article extends Component {
             </div>)
           }
           <div className='title-wrapper'>
-            <input type='text'
+            <textarea type='text'
               className={
                 this.state.allowChangeTitle ? 'content-title' : 'content-title content-title-view'
               }
